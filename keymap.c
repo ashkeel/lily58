@@ -21,7 +21,7 @@ static long int oled_timeout = OLED_TIMEOUT;  // 10 minutes
 
 enum layer_number {
   _QWERTY = 0,
-  _WORKMAN,
+  _COLEMAKDH,
   _LOWER,
   _RAISE,
   _ADJUST,
@@ -29,7 +29,7 @@ enum layer_number {
 };
 
 #define KC_GAME TG(_GAME)
-#define KC_WKMN TG(_WORKMAN)
+#define KC_CLMK TG(_COLEMAKDH)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* QWERTY
@@ -56,25 +56,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 /* WORKMAN
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * |      |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  |   Q  |   D  |   R  |   W  |   B  |                    |   J  |   F  |   U  |   P  |   ;  |  -   |
+ * |      |   Q  |   W  |   F  |   P  |   B  |                    |   J  |   L  |   U  |   Y  |   ;  |  -   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | LShft|   A  |   S  |   H  |   T  |   G  |-------.    ,-------|   Y  |   N  |   E  |   O  |   I  |  '   |
- * |------+------+------+------+------+------| BckSP |    | BckSP |------+------+------+------+------+------|
- * | LCTRL|   Z  |   X  |   M  |   C  |   V  |-------|    |-------|   K  |   L  |   ,  |   .  |   /  |RShift|
+ * |      |   A  |   R  |   S  |   T  |   G  |-------.    ,-------|   M  |   N  |   E  |   I  |   O  |  '   |
+ * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
+ * |      |   Z  |   X  |   C  |   D  |   V  |-------|    |-------|   K  |   H  |   ,  |   .  |   /  |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
+ *                   |      |      |      | /       /       \      \  |      |      |      |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
 
- [_WORKMAN] = LAYOUT(
-  KC_ESC,  KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,
-  KC_TAB,  KC_Q,   KC_D,    KC_R,    KC_W,    KC_B,                     KC_J,    KC_F,    KC_U,    KC_P,    KC_SCLN, KC_MINS,
-  KC_LSFT, KC_A,   KC_S,    KC_H,    KC_T,    KC_G,                     KC_Y,    KC_N,    KC_E,    KC_O,    KC_I   , KC_QUOT,
-  KC_LCTL, KC_Z,   KC_X,    KC_M,    KC_C,    KC_V, KC_BSPC,  KC_BSPC,  KC_K,    KC_L,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                        KC_LALT, KC_LGUI, MO(_LOWER), KC_SPC, KC_ENT, MO(_RAISE), KC_BSPC, KC_RGUI
+ [_COLEMAKDH] = LAYOUT(
+  _______, _______, _______, _______, _______, _______,                 _______, _______, _______, _______, _______, _______,
+  _______, KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_MINS,
+  _______, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                    KC_M,    KC_N,    KC_E,    KC_I,    KC_O   , KC_QUOT,
+  _______, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V, _______,  _______, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, _______,
+                         _______, _______, _______, _______, _______, _______, _______, _______
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -137,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   KC_CAPS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_GAME, KC_WKMN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_GAME, KC_CLMK, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                              _______, _______, _______, _______, _______,  _______, _______, _______
   ),
 /* GAME
@@ -259,8 +259,8 @@ static void render_bongo_cat(void) {
 
 static void render_status(void) {
     // LAYOUT
-    if (layer_state_is(_WORKMAN)) {
-        oled_write_ln_P(PSTR("WORKM"), false);
+    if (layer_state_is(_COLEMAKDH)) {
+        oled_write_ln_P(PSTR("CM-DH"), false);
     } else {
         oled_write_ln_P(PSTR("QWERT"), false);
     }
@@ -275,7 +275,7 @@ static void render_status(void) {
     // Layer display
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-        case _WORKMAN:
+        case _COLEMAKDH:
             oled_write_ln_P(PSTR("deflt"), false);
             break;
         case _RAISE:
